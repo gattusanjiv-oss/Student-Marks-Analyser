@@ -1,0 +1,2 @@
+Name,Python,Database,Java,C++,HTML,Theory of Computation,Total,Average,Overall Grade,Result,Strongest Subject,Focus Subject,Insight
+Name,marks[subject] for subject in SUBJECTS,total,average,get_grade(average),PASS,best_subject,focus_subject,get_feedback(average)

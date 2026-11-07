@@ -1,0 +1,17 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Generated student records
+student_Results.csv
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
