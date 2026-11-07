@@ -7,6 +7,7 @@ A simple Python command-line program that collects a student's marks and prints 
 - Collects marks for Python, Database, Java, C++, HTML, and Theory of Computation.
 - Checks that each mark is a number between 0 and 100.
 - Calculates the total and average.
+- Estimates CGPA on a 10-point scale from the average percentage.
 - Displays a grade for each subject and an overall grade.
 - Reports whether the student passed every subject.
 - Highlights the strongest subject and the subject to focus on.
@@ -66,3 +67,12 @@ Enter the student's name, then enter a mark from 0 to 100 when prompted for each
 | Below 40 | F |
 
 The student passes only if their mark is at least 40 in every subject.
+
+## CGPA calculation
+
+The program estimates CGPA using the average percentage:
+
+-text
+CGPA = (average percentage / 100) * 10
+
+For example, an average of 80% gives an estimated CGPA of 8.00/10. This is a simple estimate; official CGPA calculations can differ between institutions and may use course credits or a different conversion scale.

@@ -3,6 +3,7 @@ import os
 
 SUBJECTS = ["Python", "Database", "Java", "C++", "HTML", "Theory of Computation"]
 PASS_MARK = 40
+CGPA_SCALE = 10
 
 
 def get_mark(subject):
@@ -60,6 +61,7 @@ def main():
     marks = {subject: get_mark(subject) for subject in SUBJECTS}
     total = sum(marks.values())
     average = total / len(SUBJECTS)
+    cgpa = average / 100 * CGPA_SCALE
     passed = all(mark >= PASS_MARK for mark in marks.values())
     best_subject = max(marks, key=marks.get)
     focus_subject = min(marks, key=marks.get)
@@ -75,6 +77,7 @@ def main():
     print("-" * 48)
     print(f"Total: {total:.2f} / {len(SUBJECTS) * 100}")
     print(f"Average: {average:.2f}%")
+    print(f"Estimated CGPA (10-point scale): {cgpa:.2f} / {CGPA_SCALE}")
     print(f"Overall grade: {get_grade(average)}")
     print(f"Result: {'PASS' if passed else 'NEEDS IMPROVEMENT'}")
     print(f"Strongest subject: {best_subject} ({marks[best_subject]:.2f})")
@@ -83,14 +86,33 @@ def main():
     print("-" * 48)
 
 
-if __name__ == "__main__":
-    main()
     filename = "student_Results.csv"
     file_exists = os.path.isfile(filename)
 
-    with open(filename, mode='a', newline='') as file:
+    with open(filename, mode="a", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
-        if not file_exists:
-            writer.writerow(["Name"] + SUBJECTS + ["Total", "Average", "Overall Grade", "Result", "Strongest Subject", "Focus Subject", "Insight"])
-        writer.writerow([name] + [marks[subject] for subject in SUBJECTS] + [total, average, get_grade(average), 'PASS' if passed else 'NEEDS IMPROVEMENT', best_subject, focus_subject, get_feedback(average)])
-        print(f"\nData saved to {filename}.")
+        if not file_exists or os.path.getsize(filename) == 0:
+            writer.writerow(
+                ["Name"] + SUBJECTS + [
+                    "Total", "Average", "Overall Grade", "Result",
+                    "Strongest Subject", "Focus Subject", "Insight",
+                ]
+            )
+        writer.writerow(
+            [name]
+            + [marks[subject] for subject in SUBJECTS]
+            + [
+                total,
+                average,
+                get_grade(average),
+                "PASS" if passed else "NEEDS IMPROVEMENT",
+                best_subject,
+                focus_subject,
+                get_feedback(average),
+            ]
+        )
+    print(f"\nData saved to {filename}.")
+
+
+if __name__ == "__main__":
+    main()
