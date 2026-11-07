@@ -52,7 +52,7 @@ def main():
     print("=" * 48)
 
     while True:
-        name = input("Enter student name: ").strip()
+        name = input("Enter student full name: ").strip()
         if name:
             break
         print("Name cannot be empty.")
@@ -92,5 +92,5 @@ if __name__ == "__main__":
         writer = csv.writer(file)
         if not file_exists:
             writer.writerow(["Name"] + SUBJECTS + ["Total", "Average", "Overall Grade", "Result", "Strongest Subject", "Focus Subject", "Insight"])
-        writer.writerow(["Name"] + ["marks[subject] for subject in SUBJECTS"] + ["total", "average", "get_grade(average)", "PASS" if "passed" else "NEEDS IMPROVEMENT", "best_subject", "focus_subject", "get_feedback(average)"])
+        writer.writerow([name] + [marks[subject] for subject in SUBJECTS] + [total, average, get_grade(average), 'PASS' if passed else 'NEEDS IMPROVEMENT', best_subject, focus_subject, get_feedback(average)])
         print(f"\nData saved to {filename}.")
